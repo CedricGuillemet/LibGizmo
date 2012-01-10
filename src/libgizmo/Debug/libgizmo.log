@@ -1,0 +1,30 @@
+﻿Build started 10/01/2012 20:31:20.
+     1>Project "D:\Projects\releases\libgizmo\libGizmo\src\libgizmo\libgizmo.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\libgizmo.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\Projects\releases\libgizmo\libGizmo\src\\..\inc /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt GizmoTransformMove.cpp GizmoTransformRender.cpp GizmoTransformRotate.cpp GizmoTransformScale.cpp ZBaseMaths.cpp ZMathsFunc.cpp
+         ZMathsFunc.cpp
+         ZBaseMaths.cpp
+         GizmoTransformScale.cpp
+         GizmoTransformRotate.cpp
+         GizmoTransformRender.cpp
+         GizmoTransformMove.cpp
+         Generating Code...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(1151,5): warning MSB8012: TargetPath(D:\Projects\releases\libgizmo\libGizmo\src\Debug\libgizmoDebug.lib) does not match the Library's OutputFile property value (D:\Projects\releases\libgizmo\libGizmo\lib\libgizmoDebug.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"D:\Projects\releases\libgizmo\libGizmo\src\\..\lib\libgizmoDebug.lib" /NOLOGO Debug\GizmoTransformMove.obj
+         Debug\GizmoTransformRender.obj
+         Debug\GizmoTransformRotate.obj
+         Debug\GizmoTransformScale.obj
+         Debug\ZBaseMaths.obj
+         Debug\ZMathsFunc.obj
+         libgizmo.vcxproj -> D:\Projects\releases\libgizmo\libGizmo\src\Debug\libgizmoDebug.lib
+       FinalizeBuildStatus:
+         Deleting file "Debug\libgizmo.unsuccessfulbuild".
+         Touching "Debug\libgizmo.lastbuildstate".
+     1>Done Building Project "D:\Projects\releases\libgizmo\libGizmo\src\libgizmo\libgizmo.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.56

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgizmo", "libgizmo\libgizmo.vcxproj", "{5AEF535C-D65A-40B7-AA87-8130CF1B4650}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win32example", "win32example\win32example.vcxproj", "{FF6718FF-BFDA-4832-B526-F8223ABB74F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AEF535C-D65A-40B7-AA87-8130CF1B4650}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5AEF535C-D65A-40B7-AA87-8130CF1B4650}.Debug|Win32.Build.0 = Debug|Win32
+		{5AEF535C-D65A-40B7-AA87-8130CF1B4650}.Release|Win32.ActiveCfg = Release|Win32
+		{5AEF535C-D65A-40B7-AA87-8130CF1B4650}.Release|Win32.Build.0 = Release|Win32
+		{FF6718FF-BFDA-4832-B526-F8223ABB74F2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FF6718FF-BFDA-4832-B526-F8223ABB74F2}.Debug|Win32.Build.0 = Debug|Win32
+		{FF6718FF-BFDA-4832-B526-F8223ABB74F2}.Release|Win32.ActiveCfg = Release|Win32
+		{FF6718FF-BFDA-4832-B526-F8223ABB74F2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+﻿Build started 10/01/2012 21:06:57.
+     1>Project "D:\Projects\releases\libgizmo\libGizmo\src\win32example\win32example.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "D:\Projects\releases\libgizmo\libGizmo\src\Release\".
+       InitializeBuildStatus:
+         Creating "Release\win32example.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\Projects\releases\libgizmo\libGizmo\src\\..\inc /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Lesson6.cpp
+         Lesson6.cpp
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(D:\Projects\releases\libgizmo\libGizmo\src\Release\win32example.exe) does not match the Linker's OutputFile property value (D:\Projects\releases\libgizmo\libGizmo\bin\win32example.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Projects\releases\libgizmo\libGizmo\src\\..\bin\win32example.exe" /INCREMENTAL:NO /NOLOGO opengl32.lib D:\Projects\releases\libgizmo\libGizmo\src\\..\lib\libgizmo.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\win32example.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Projects\releases\libgizmo\libGizmo\src\Release\win32example.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Projects\releases\libgizmo\libGizmo\src\Release\win32example.lib" /MACHINE:X86 Release\Lesson6.obj
+         Generating code
+         Finished generating code
+     1>libgizmo.lib(GizmoTransformScale.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libgizmo.lib(GizmoTransformScale.obj)' or at 'D:\Projects\releases\libgizmo\libGizmo\src\Release\vc100.pdb'; linking object as if no debug info
+     1>libgizmo.lib(GizmoTransformMove.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libgizmo.lib(GizmoTransformMove.obj)' or at 'D:\Projects\releases\libgizmo\libGizmo\src\Release\vc100.pdb'; linking object as if no debug info
+     1>libgizmo.lib(GizmoTransformRotate.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libgizmo.lib(GizmoTransformRotate.obj)' or at 'D:\Projects\releases\libgizmo\libGizmo\src\Release\vc100.pdb'; linking object as if no debug info
+     1>libgizmo.lib(GizmoTransformRender.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libgizmo.lib(GizmoTransformRender.obj)' or at 'D:\Projects\releases\libgizmo\libGizmo\src\Release\vc100.pdb'; linking object as if no debug info
+     1>libgizmo.lib(ZBaseMaths.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libgizmo.lib(ZBaseMaths.obj)' or at 'D:\Projects\releases\libgizmo\libGizmo\src\Release\vc100.pdb'; linking object as if no debug info
+         win32example.vcxproj -> D:\Projects\releases\libgizmo\libGizmo\src\Release\win32example.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\Projects\releases\libgizmo\libGizmo\src\\..\bin\win32example.exe;#1" /manifest Release\win32example.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\win32example.unsuccessfulbuild".
+         Touching "Release\win32example.lastbuildstate".
+     1>Done Building Project "D:\Projects\releases\libgizmo\libGizmo\src\win32example\win32example.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.66
