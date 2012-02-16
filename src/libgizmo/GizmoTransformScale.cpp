@@ -68,6 +68,7 @@ bool CGizmoTransformScale::GetOpType(SCALETYPE &type, unsigned int x, unsigned i
 		GetTransformedVector(2).Length());
 
 	m_LockX = x;
+    m_LockY = y;
 	m_svgMatrix = *m_pMatrix;
 
 	tmatrix mt;
@@ -75,6 +76,18 @@ bool CGizmoTransformScale::GetOpType(SCALETYPE &type, unsigned int x, unsigned i
 	mt.NoTrans();
 	mt.Inverse();
 
+
+	//tmatrix mt;
+    if (mLocation == LOCATE_LOCAL)
+    {
+	    mt = *m_pMatrix;
+	    mt.Inverse();
+    }
+    else
+    {
+        // world
+        mt.Translation( -m_pMatrix->V4.position);
+    }
 
 	// ray casting
 	tvector3 rayOrigin,rayDir,df2;
@@ -169,17 +182,34 @@ void CGizmoTransformScale::OnMouseMove(unsigned int x, unsigned int y)
 		}
 		else
 		{
-			float lng2 = ( df.Dot(m_LockVertex)/ m_Lng);
-			if (lng2 < 1)
+            int difx = x - m_LockX;
+            int dify = y - m_LockY;
+
+            float len = sqrtf( (float)(difx*difx) + (float)(dify*dify) );
+
+            float lng2 = len /100.f;
+            /*
+			float lng2 = ( df.Dot(m_LockVertex));
+            char tmps[512];
+            sprintf(tmps, "%5.4f\n", lng2 );
+            OutputDebugStringA( tmps );
+
+
+			if (lng2 < 1.f)
 			{
-				if (lng2<=-4)
+				if ( lng2<= 0.001f )
 					lng2 = 0.001f;
 				else
 				{
-					lng2+=4;
-					lng2/=5;
+					//lng2+=4.f;
+					lng2/=5.f;
 				}
 			}
+            else
+            {
+                int a = 1;
+            }
+            */
 			SnapScale(lng2);
 			scVect *= lng2;
 			scVect += scVect2;
@@ -202,7 +232,7 @@ void CGizmoTransformScale::OnMouseMove(unsigned int x, unsigned int y)
 
         if (mLocation == LOCATE_WORLD)
         {
-            mt2 = m_svgMatrix * mt;
+            mt2 = mt * m_svgMatrix;
         }
         else
         {

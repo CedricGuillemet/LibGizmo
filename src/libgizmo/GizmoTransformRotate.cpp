@@ -184,7 +184,10 @@ void CGizmoTransformRotate::Rotate1Axe(const tvector3& rayOrigin,const tvector3&
     m_LockVertex2 = df;
 
     float acosng = df.Dot(m_LockVertex);
-    m_Ng2 = (float)acos(acosng);
+    if ( (acosng<-0.99999f) || (acosng> 0.99999f) )
+        m_Ng2 = 0.f;
+    else
+        m_Ng2 = (float)acos(acosng);
 
     if (df.Dot(m_Vty)>0)
         m_Ng2 = -m_Ng2;

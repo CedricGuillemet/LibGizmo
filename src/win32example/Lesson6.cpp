@@ -12,7 +12,10 @@
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include "IGizmo.h"
 
-float objectMatrix[16];
+//float objectMatrix[16];
+
+float objectMatrix[16]={-0.3210,0.0000,0.9471,0.0000,0.0000,1.0000,0.0000,0.0000,-0.9471,0.0000,-0.3210,0.0000,-137.1790,16.4949,375.4003,1.0000};
+
 IGizmo *gizmo = NULL;
 
 IGizmo *gizmoMove, *gizmoRotate, *gizmoScale;
@@ -42,6 +45,7 @@ LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 int LoadGLTextures()									// Load Bitmaps And Convert To Textures
 {
     //objectMatrix.Identity();
+    /*
     objectMatrix[0] = 1.f;
     objectMatrix[1] = 0.f;
     objectMatrix[2] = 0.f;
@@ -58,7 +62,7 @@ int LoadGLTextures()									// Load Bitmaps And Convert To Textures
     objectMatrix[13] = 0.f;
     objectMatrix[14] = 0.f;
     objectMatrix[15] = 1.f;
-
+    */
     gizmoMove = CreateMoveGizmo();
     gizmoRotate = CreateRotateGizmo();
     gizmoScale = CreateScaleGizmo();
@@ -67,6 +71,9 @@ int LoadGLTextures()									// Load Bitmaps And Convert To Textures
 
     gizmo->SetEditMatrix( objectMatrix );
     gizmo->SetScreenDimension( screenWidth, screenHeight );
+    gizmoMove->SetDisplayScale( 2.f );
+    gizmoRotate->SetDisplayScale( 2.f );
+    gizmoScale->SetDisplayScale( 2.f );
 	return TRUE;										// Return The Status
 }
 
@@ -116,16 +123,28 @@ int InitGL(GLvoid)										// All Setup For OpenGL Goes Here
 int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
-
+    /*
     float viewMat[16];
     float projMat[16];
        
     glGetFloatv (GL_MODELVIEW_MATRIX, viewMat );  
     glGetFloatv (GL_PROJECTION_MATRIX, projMat );  
-    
+    */
+
+    float viewMat[16]={-0.4747,-0.2647,0.8394,0.0000,0.0000,0.9537,0.3007,0.0000,-0.8802,0.1427,-0.4527,0.0000,180.6443,-110.9036,-91.6591,1.0000};
+    float projMat[16]={0.5625,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000,0.0000,0.0000,0.0000,-1.0002,-1.0000,0.0000,0.0000,-0.2000,0.0000};
+
+glMatrixMode( GL_PROJECTION );
+glLoadIdentity();
+glLoadMatrixf( projMat );
+
+glMatrixMode( GL_MODELVIEW );
+glLoadIdentity();
+glLoadMatrixf( viewMat );
 
 	glPushMatrix();
     glMultMatrixf( objectMatrix );
+    glScalef(50,50,50);
     glColor4f(0.5f, 0.5f, 0.5f, 1.f);
     glCullFace(GL_CW);
     glEnable(GL_CULL_FACE);
@@ -419,15 +438,25 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 		}
         case WM_KEYDOWN:
             if ( wParam == 0x31 )
+            {
                 gizmo = gizmoMove;
+                gizmo->SetLocation( IGizmo::LOCATE_WORLD );
+            }
             else if ( wParam==0x32 )
+            {
                 gizmo = gizmoRotate;
+                gizmo->SetLocation( IGizmo::LOCATE_LOCAL );
+            }
             else if ( wParam==0x33 )
+            {
                 gizmo = gizmoScale;
+                gizmo->SetLocation( IGizmo::LOCATE_WORLD );
+            }
 
             gizmo->SetEditMatrix( objectMatrix );
             gizmo->SetScreenDimension( screenWidth, screenHeight );
-            gizmo->SetLocation( IGizmo::LOCATE_VIEW );
+            //gizmo->SetLocation( IGizmo::LOCATE_VIEW );
+            //gizmo->SetLocation( IGizmo::LOCATE_LOCAL );
             break;
 		case WM_CLOSE:								// Did We Receive A Close Message?
 		{
@@ -439,6 +468,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
                 mousex = LOWORD(lParam);
                 mousey = HIWORD(lParam);
                 if (gizmo)
+                    //gizmo->OnMouseMove( 513, 366 );//mousex, mousey );
                     gizmo->OnMouseMove( mousex, mousey );
                 return 0;
             }
@@ -482,7 +512,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	
 
 	// Create Our OpenGL Window
-	if (!CreateGLWindow("LibGizmo Test application Base on NeHe's Texture Mapping Tutorial",640,480,32,fullscreen))
+	if (!CreateGLWindow("LibGizmo Test application Base on NeHe's Texture Mapping Tutorial",1280,720,32,fullscreen))
 	{
 		return 0;									// Quit If Window Was Not Created
 	}

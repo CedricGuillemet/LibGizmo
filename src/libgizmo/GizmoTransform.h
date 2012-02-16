@@ -50,6 +50,7 @@ public:
         m_Lng = 1.f;
         mScreenHeight = mScreenWidth = 1;
         m_ScreenFactor = 1;
+        mDisplayScale = 1.f;
 	}
 
 	virtual ~CGizmoTransform()
@@ -66,6 +67,7 @@ public:
         mEditPos = mEditScale = NULL;
         mEditQT = NULL;
 	}
+    virtual void SetDisplayScale( float aScale ) { mDisplayScale = aScale; }
     /*
     virtual void SetEditTransform(ZTransform *pTransform)
     {
@@ -188,16 +190,11 @@ public:
 */
 	void ComputeScreenFactor()
 	{
-		if (m_pMatrix)
-		{
-			tvector3 sz(1,1,1);
-			sz.TransformPoint(m_invproj);
-			sz+=m_pMatrix->GetTranslation();
-			sz.TransformPoint(m_invmodel);
-			m_ScreenFactor=sz.Length()/4.5f;
-		}
-		else
-			m_ScreenFactor = 1;
+        tmatrix viewproj = m_Model * m_Proj;
+
+        tvector4 trf = vector4( m_pMatrix->V4.position.x, m_pMatrix->V4.position.y, m_pMatrix->V4.position.z, 1.f);
+        trf.Transform( viewproj );
+	    m_ScreenFactor = mDisplayScale * 0.15f * trf.w;
 	}
 
 	tplane m_plan;
@@ -208,10 +205,14 @@ public:
     {
         extern tvector3 ptd;
 
-	    tvector3 df,inters,df2;
+	    tvector3 df,inters;
 
 	    m_plan=vector4(m_pMatrix->GetTranslation(), norm);
 	    m_plan.RayInter(inters,rayOrigin,rayDir);
+        df.TransformPoint( inters, mt );
+        
+        df /=GetScreenFactor();
+        /*
 	    ptd = inters;
 	    df = inters - m_pMatrix->GetTranslation();
 	    df /=GetScreenFactor();
@@ -219,7 +220,7 @@ public:
 
 	    df2.TransformPoint(mt);
 	    df2 *= trss;
-
+        */
 	    m_LockVertex = df;
         if (lockVTNorm)
         {
@@ -231,7 +232,7 @@ public:
         }
 	    m_Lng = df.Length();
 
-	    return df2;
+	    return df;
     }
 
 	float GetScreenFactor()
@@ -266,7 +267,7 @@ protected:
 	tmatrix m_svgMatrix;
 	float m_ScreenFactor;
 	bool m_bUseSnap;
-
+    float mDisplayScale;
 	
     LOCATION mLocation;
 
